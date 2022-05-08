@@ -1,0 +1,82 @@
+{
+  "project_info": {
+    "project_number": "661690890987",
+    "project_id": "privateapp-hamasur",
+    "storage_bucket": "privateapp-hamasur.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:661690890987:android:fe043907d2158c4e7d5cae",
+        "android_client_info": {
+          "package_name": "dev.hamasur.notes_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "661690890987-jt8ulv4655ssvje701nc1rah10u28e9m.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCCRejpGsGPUk9WNfNGmasu_WubF3QTnFk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "661690890987-jt8ulv4655ssvje701nc1rah10u28e9m.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "661690890987-n60sb83mvj19ebqmt20oo48ubq9p89ht.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "dev.hamasur.privateapp"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:661690890987:android:d658f47209b79ef87d5cae",
+        "android_client_info": {
+          "package_name": "dev.hamasur.privateapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "661690890987-jt8ulv4655ssvje701nc1rah10u28e9m.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCCRejpGsGPUk9WNfNGmasu_WubF3QTnFk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "661690890987-jt8ulv4655ssvje701nc1rah10u28e9m.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "661690890987-n60sb83mvj19ebqmt20oo48ubq9p89ht.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "dev.hamasur.privateapp"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
