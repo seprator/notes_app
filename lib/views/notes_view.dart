@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 import 'package:notes_app/services/auth/auth_service.dart';
 import 'package:notes_app/services/crud/notes_service.dart';
@@ -58,7 +60,29 @@ class _NotesViewState extends State<NotesView> {
           })
         ],
       ),
-      body: const Text('hello world'),
+      body: FutureBuilder(
+        future: _notesService.createUser(email: userEmail),
+        builder: (context, snapshot) {
+          switch (snapshot.connectionState) {
+            case ConnectionState.done:
+              return StreamBuilder(
+                stream: _notesService.allNotes,
+                builder: (context, snapshot) {
+                  switch (snapshot.connectionState) {
+                    case ConnectionState.waiting:
+                      return const Text('waiting for all notes ');
+
+                    default:
+                      return const CircularProgressIndicator();
+                  }
+                },
+              );
+
+            default:
+              return const CircularProgressIndicator();
+          }
+        },
+      ),
     );
   }
 }
