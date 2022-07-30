@@ -4,7 +4,8 @@ import 'package:notes_app/constants/routes.dart';
 import 'package:notes_app/services/auth/auth_service.dart';
 // ignore: unused_import
 import 'package:notes_app/views/login_view.dart';
-import 'package:notes_app/views/notes_view.dart';
+import 'package:notes_app/views/notes/new_note_view.dart';
+import 'package:notes_app/views/notes/notes_view.dart';
 // ignore: unused_import
 import 'package:notes_app/views/register_view.dart';
 import 'package:notes_app/views/verify_email-view.dart';
@@ -22,6 +23,7 @@ void main() {
       registerRoute: (context) => const RegisterView(),
       notesRoute: (context) => const NotesView(),
       verifyEmailRoute: (context) => const VerifyEmailView(),
+      newNoteRoute: (context) => const NewNoteView(),
       
     },
   ));
