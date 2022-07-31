@@ -69,6 +69,7 @@ class _NotesViewState extends State<NotesView> {
         builder: (context, snapshot) {
           switch (snapshot.connectionState) {
             case ConnectionState.done:
+            case ConnectionState.active:
               return StreamBuilder(
                 stream: _notesService.allNotes,
                 builder: (context, snapshot) {

@@ -10,14 +10,14 @@ import 'crud_exceptions.dart';
 class NotesService {
   Database? _db;
 
-  List<DatabaseNotes> _notes = [];
+  List<DatabaseNote> _notes = [];
   static final _shared = NotesService._sharedInstance();
 
   NotesService._sharedInstance();
   factory NotesService() => _shared;
   final _notesStreamControler =
-      StreamController<List<DatabaseNotes>>.broadcast();
-  Stream<List<DatabaseNotes>> get allNotes => _notesStreamControler.stream; 
+      StreamController<List<DatabaseNote>>.broadcast();
+  Stream<List<DatabaseNote>> get allNotes => _notesStreamControler.stream; 
   Future<void> _cacheNotes() async {
     await _ensureDbIsOpen();
 
@@ -39,15 +39,15 @@ class NotesService {
       rethrow;
     }
   }
-  Future<DatabaseNotes> updateNote({
-    required DatabaseNotes notes,
+  Future<DatabaseNote> updateNote({
+    required DatabaseNote note,
     required String text,
   }) async {
     await _ensureDbIsOpen();
 
     final db = _getDatabaseOrThrow();
     // make sure note exists
-    await getNote(id: notes.id);
+    await getNote(id: note.id);
     //update db
     final updatesCount = await db.update(
       notesTable,
@@ -59,7 +59,7 @@ class NotesService {
     if (updatesCount == 0) {
       throw CouldNotUpdateNote();
     } else {
-      final updatedNote = await getNote(id: notes.id);
+      final updatedNote = await getNote(id: note.id);
       _notes.removeWhere((note) => note.id == updatedNote.id);
       _notes.add(updatedNote);
       _notesStreamControler.add(_notes);
@@ -67,13 +67,13 @@ class NotesService {
     }
   }
 
-  Future<Iterable<DatabaseNotes>> getAllNotes() async {
+  Future<Iterable<DatabaseNote>> getAllNotes() async {
     await _ensureDbIsOpen();
     final db = _getDatabaseOrThrow();
     final notes = await db.query(
       notesTable,
     );
-    final result = notes.map((noteRow) => DatabaseNotes.fromRow(noteRow));
+    final result = notes.map((noteRow) => DatabaseNote.fromRow(noteRow));
     if (notes.isEmpty) {
       throw CouldNotFindNote();
     } else {
@@ -81,7 +81,7 @@ class NotesService {
     }
   }
 
-  Future<DatabaseNotes> getNote({required int id}) async {
+  Future<DatabaseNote> getNote({required int id}) async {
     await _ensureDbIsOpen();
 
     final db = _getDatabaseOrThrow();
@@ -94,7 +94,7 @@ class NotesService {
     if (notes.isEmpty) {
       throw CouldNotFindNote();
     } else {
-      final note = DatabaseNotes.fromRow(notes.first);
+      final note = DatabaseNote.fromRow(notes.first);
       _notes.removeWhere((note) => note.id == id);
       _notes.add(note);
       _notesStreamControler.add(_notes);
@@ -129,7 +129,7 @@ class NotesService {
     }
   }
 
-  Future<DatabaseNotes> createNote({required DatabaseUser owner}) async {
+  Future<DatabaseNote> createNote({required DatabaseUser owner}) async {
     await _ensureDbIsOpen();
     final db = _getDatabaseOrThrow();
     // make sure owner exists in the databse
@@ -144,7 +144,7 @@ class NotesService {
       textColumn: text,
       isSyncedWithCloudcolumn: 1,
     });
-    final note = DatabaseNotes(
+    final note = DatabaseNote(
       id: noteId,
       userId: owner.id,
       text: text,
@@ -274,19 +274,19 @@ class DatabaseUser {
   int get hashCode => id.hashCode;
 }
 
-class DatabaseNotes {
+class DatabaseNote {
   final int id;
   final int userId;
   final String text;
   final bool isSyncedWithCloud;
 
-  DatabaseNotes({
+  DatabaseNote({
     required this.id,
     required this.userId,
     required this.text,
     required this.isSyncedWithCloud,
   });
-  DatabaseNotes.fromRow(Map<String, Object?> map)
+  DatabaseNote.fromRow(Map<String, Object?> map)
       : id = map[idColumn] as int,
         userId = map[userIdColumn] as int,
         text = map[textColumn] as String,
@@ -296,7 +296,7 @@ class DatabaseNotes {
   String toString() =>
       'Note,Id = $id ,userId = $userId , isSyncedWithCloud = $isSyncedWithCloud ';
   @override
-  operator ==(covariant DatabaseNotes other) => id == other.id;
+  operator ==(covariant DatabaseNote other) => id == other.id;
 
   @override
   int get hashCode => id.hashCode;
