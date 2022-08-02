@@ -15,20 +15,23 @@ class _NewNoteViewState extends State<NewNoteView> {
   late final TextEditingController _textController;
   @override
   void initState() {
-    _textController = TextEditingController();
     _notesService = NotesService();
+    _textController = TextEditingController();
     super.initState();
   }
+  
 
   void _textControllerListener() async {
     final note = _note;
-    final text = _textController.text;
-    if (note != null) {
-      await _notesService.updateNote(
-        note: note,
-        text: text,
-      );
+    if (note == null) {
+      return;
     }
+    final text = _textController.text;
+await _notesService.updateNote(
+      note: note,
+      text: text,
+    );
+    
   }
 
   void _setupTextControllerListener() {
@@ -43,18 +46,18 @@ class _NewNoteViewState extends State<NewNoteView> {
     }
     final currentUser = AuthService.firebase().currentUser!;
     final email = currentUser.email!;
-    final owner = await _notesService.getUser(
+    final owner = await _notesService.getOrCreateUser(
       email: email,
     );
     return await _notesService.createNote(
-      owner: owner,
+      owner: owner, 
     );
   }
 
   void _deleteNoteIfTextIsEmpty() {
     final note = _note;
     if (_textController.text.isEmpty && note != null) {
-      _notesService.deleteNotes(
+      _notesService.deleteNote(
         id: note.id,
       );
     }
@@ -73,8 +76,8 @@ class _NewNoteViewState extends State<NewNoteView> {
 
   @override
   void dispose() {
-    _saveNoteIfTextNotEmpty();
     _deleteNoteIfTextIsEmpty();
+    _saveNoteIfTextNotEmpty();
     _textController.dispose();
     super.dispose();
   }
@@ -89,7 +92,7 @@ class _NewNoteViewState extends State<NewNoteView> {
         builder: (context, snapshot) {
           switch (snapshot.connectionState) {
             case ConnectionState.done:
-              _note = snapshot.data as DatabaseNote;
+              _note = snapshot.data as DatabaseNote?;
               _setupTextControllerListener();
 
               return TextField(
@@ -100,7 +103,7 @@ class _NewNoteViewState extends State<NewNoteView> {
                     const InputDecoration(hintText: 'start typing your note'),
               );
             default:
-              return CircularProgressIndicator();
+              return const CircularProgressIndicator();
           }
         },
       ),
