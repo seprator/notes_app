@@ -61,7 +61,9 @@ class _NotesViewState extends State<NotesView> {
         ],
       ),
       body: FutureBuilder(
-        future: _notesService.getOrCreateUser(email: userEmail),
+        future: _notesService.getOrCreateUser(
+          email: userEmail,
+        ),
         builder: (context, snapshot) {
           switch (snapshot.connectionState) {
             case ConnectionState.done:
@@ -73,6 +75,7 @@ class _NotesViewState extends State<NotesView> {
                     case ConnectionState.active:
                       if (snapshot.hasData) {
                         final allNotes = snapshot.data as List<DatabaseNote>;
+                        
 return NotesListView(
                             onTap: (note) async {
                               Navigator.of(context).pushNamed(

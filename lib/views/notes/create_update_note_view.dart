@@ -108,6 +108,7 @@ class _CreateUpdateNoteViewState extends State<CreateUpdateNoteView> {
                 maxLines: null,
                 decoration:
                     const InputDecoration(hintText: 'start typing your note'),
+                autofocus: true,
               );
             default:
               return const CircularProgressIndicator();
