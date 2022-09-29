@@ -11,8 +11,9 @@ import 'package:notes_app/services/auth/firebase_auth_provider.dart';
 import 'package:notes_app/views/login_view.dart';
 import 'package:notes_app/views/notes/create_update_note_view.dart';
 import 'package:notes_app/views/notes/notes_view.dart';
-
 import 'package:notes_app/views/register_view.dart';
+
+
 import 'package:notes_app/views/verify_email-view.dart';
 
 void main() {
@@ -25,10 +26,7 @@ void main() {
       child: const HomePage(),
     ),
     routes: {
-      loginRoute: (context) => const LoginView(),
-      registerRoute: (context) => const RegisterView(),
-      notesRoute: (context) => const NotesView(),
-      verifyEmailRoute: (context) => const VerifyEmailView(),
+   
       createOrUpdateNoteRoute: (context) => const CreateUpdateNoteView(),
     },
   ));
@@ -48,6 +46,8 @@ class HomePage extends StatelessWidget {
           return const VerifyEmailView();
         } else if (state is AuthStateLoggedOut) {
           return const LoginView();
+        } else if (state is AuthStateRegistering) {
+          return const RegisterView();
         } else {
           return const Scaffold(
             body: CircularProgressIndicator(),
