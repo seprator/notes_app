@@ -12,6 +12,15 @@ abstract class AuthState {
     this.loadingText = 'please wait a moment',
   });
 }
+class AuthStateForgotPassword extends AuthState {
+  final Exception? exception;
+  final bool hasSentEmail;
+  const AuthStateForgotPassword({
+    required this.exception,
+    required this.hasSentEmail,
+    required bool isLoading,
+  }) : super(isLoading: isLoading);
+}
 
 class AuthStateUnInitialized extends AuthState {
   const AuthStateUnInitialized({required bool isLoading})
@@ -19,7 +28,7 @@ class AuthStateUnInitialized extends AuthState {
 }
 
 class AuthStateRegistering extends AuthState {
-  final Exception exception;
+  final Exception? exception;
 
   const AuthStateRegistering({required this.exception, required bool isLoading})
       : super(isLoading: isLoading);
