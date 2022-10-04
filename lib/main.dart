@@ -21,7 +21,8 @@ import 'package:notes_app/views/verify_email-view.dart';
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   runApp(MaterialApp(
-    title: 'Flutter Demo',
+    title: 'notes',
+    debugShowCheckedModeBanner: false,
     theme: ThemeData(primarySwatch: Colors.blue),
     home: BlocProvider<AuthBloc>(
       create: (context) => AuthBloc(FirebaseAuthProvider()),
