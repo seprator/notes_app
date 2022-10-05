@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:notes_app/services/auth/bloc/auth_bloc.dart';
 import 'package:notes_app/services/auth/bloc/auth_event.dart';
 import 'package:notes_app/services/auth/bloc/auth_state.dart';
-import 'package:notes_app/services/cloud/cloud_storage_constants.dart';
 import 'package:notes_app/utilities/dialogs/error_dialog.dart';
 import 'package:notes_app/utilities/dialogs/password_reset_email_sent_dialog.dart';
 
