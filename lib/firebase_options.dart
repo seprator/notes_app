@@ -17,10 +17,7 @@ import 'package:flutter/foundation.dart'
 class DefaultFirebaseOptions {
   static FirebaseOptions get currentPlatform {
     if (kIsWeb) {
-      throw UnsupportedError(
-        'DefaultFirebaseOptions have not been configured for web - '
-        'you can reconfigure this by running the FlutterFire CLI again.',
-      );
+      return web;
     }
     switch (defaultTargetPlatform) {
       case TargetPlatform.android:
@@ -32,12 +29,26 @@ class DefaultFirebaseOptions {
           'DefaultFirebaseOptions have not been configured for macos - '
           'you can reconfigure this by running the FlutterFire CLI again.',
         );
+      case TargetPlatform.windows:
+        return windows;
+      case TargetPlatform.linux:
+        return linux;
       default:
         throw UnsupportedError(
           'DefaultFirebaseOptions are not supported for this platform.',
         );
     }
   }
+
+  static const FirebaseOptions web = FirebaseOptions(
+    apiKey: 'AIzaSyDuz4yA4LOsa3ANHndAmgirF1d8QaJ2z6o',
+    appId: '1:661690890987:web:df838e2925dc2a707d5cae',
+    messagingSenderId: '661690890987',
+    projectId: 'privateapp-hamasur',
+    authDomain: 'privateapp-hamasur.firebaseapp.com',
+    storageBucket: 'privateapp-hamasur.appspot.com',
+    measurementId: 'G-L4MT4JP8TQ',
+  );
 
   static const FirebaseOptions android = FirebaseOptions(
     apiKey: 'AIzaSyCCRejpGsGPUk9WNfNGmasu_WubF3QTnFk',
@@ -55,5 +66,25 @@ class DefaultFirebaseOptions {
     storageBucket: 'privateapp-hamasur.appspot.com',
     iosClientId: '661690890987-ut13rgboe23s2if40kvtvrh2bq9pqgcs.apps.googleusercontent.com',
     iosBundleId: 'dev.hamasur.notesApp',
+  );
+
+  static const FirebaseOptions windows = FirebaseOptions(
+    apiKey: 'AIzaSyDuz4yA4LOsa3ANHndAmgirF1d8QaJ2z6o',
+    appId: '1:661690890987:web:e52d30598d09875c7d5cae',
+    messagingSenderId: '661690890987',
+    projectId: 'privateapp-hamasur',
+    authDomain: 'privateapp-hamasur.firebaseapp.com',
+    storageBucket: 'privateapp-hamasur.appspot.com',
+    measurementId: 'G-P9NQWXX6L4',
+  );
+
+  static const FirebaseOptions linux = FirebaseOptions(
+    apiKey: 'AIzaSyDuz4yA4LOsa3ANHndAmgirF1d8QaJ2z6o',
+    appId: '1:661690890987:web:a9e74499146355ea7d5cae',
+    messagingSenderId: '661690890987',
+    projectId: 'privateapp-hamasur',
+    authDomain: 'privateapp-hamasur.firebaseapp.com',
+    storageBucket: 'privateapp-hamasur.appspot.com',
+    measurementId: 'G-L4YCR3NKMM',
   );
 }

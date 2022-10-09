@@ -31,10 +31,10 @@
               "client_type": 3
             },
             {
-              "client_id": "661690890987-n60sb83mvj19ebqmt20oo48ubq9p89ht.apps.googleusercontent.com",
+              "client_id": "661690890987-ig41eorvt6olhf4hq1fdf7mlh0k3es6h.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "dev.hamasur.privateapp"
+                "bundle_id": "com.hamasur.app"
               }
             }
           ]
@@ -67,10 +67,10 @@
               "client_type": 3
             },
             {
-              "client_id": "661690890987-n60sb83mvj19ebqmt20oo48ubq9p89ht.apps.googleusercontent.com",
+              "client_id": "661690890987-ig41eorvt6olhf4hq1fdf7mlh0k3es6h.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "dev.hamasur.privateapp"
+                "bundle_id": "com.hamasur.app"
               }
             }
           ]
